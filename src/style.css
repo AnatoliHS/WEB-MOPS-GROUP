@@ -2802,9 +2802,15 @@ footer,
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.rental-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+@media (hover: hover) {
+  .rental-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .rental-card:hover .rental-card-img {
+    transform: scale(1.04);
+  }
 }
 
 /* ── Card image ── */
@@ -2821,10 +2827,9 @@ footer,
   object-fit: cover;
   object-position: center;
   transition: transform 400ms var(--ease);
-}
-
-.rental-card:hover .rental-card-img {
-  transform: scale(1.04);
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 /* ── Badge ── */
@@ -2970,6 +2975,7 @@ footer,
   /* Slider wrapper — scroll-snap enabled */
   .rentals-slider-wrap {
     overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
