@@ -15,7 +15,7 @@ and smoke recovery, mold remediation, and full rebuilds."
   <!-- Dark overlay so text stays readable -->
   <div class="hero-video-overlay"></div>
   <div class="container hero-container">
-    <h1 class="hero-headline reveal-up" style="--d:0ms">Restoration when you <span
+    <h1 class="hero-headline reveal-up" style="--d:0ms">Restoration <br>when you <span
         class="hero-headline-accent">need</span> it most.</h1>
     <p class="hero-sub reveal-up" style="--d:360ms">
       Professional emergency response, insurance-claim support, and full rebuild services for homes and commercial
@@ -26,9 +26,88 @@ and smoke recovery, mold remediation, and full rebuilds."
     </div>
 
   </div>
-  <div class="hero-scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+
+  <!-- Damage Types Bar at the bottom of Hero -->
+  <div class="hero-damages-bar reveal-up" style="--d:600ms">
+    <div class="container">
+      <div class="hero-damages-row">
+
+        <button type="button" class="hero-damage-pill" data-dmg="water">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z" />
+            </svg>
+          </span>
+          <span class="hdp-label">Water Damage</span>
+        </button>
+
+        <button type="button" class="hero-damage-pill" data-dmg="fire">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+            </svg>
+          </span>
+          <span class="hdp-label">Fire &amp; Smoke</span>
+        </button>
+
+        <button type="button" class="hero-damage-pill" data-dmg="mold">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+            </svg>
+          </span>
+          <span class="hdp-label">Mold &amp; Spores</span>
+        </button>
+
+        <button type="button" class="hero-damage-pill" data-dmg="storm">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z" />
+            </svg>
+          </span>
+          <span class="hdp-label">Storm Damage</span>
+        </button>
+
+        <button type="button" class="hero-damage-pill" data-dmg="hazmat">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </span>
+          <span class="hdp-label">Hazmat &amp; Asbestos</span>
+        </button>
+
+        <button type="button" class="hero-damage-pill" data-dmg="trauma">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </span>
+          <span class="hdp-label">Trauma &amp; Crime Scene</span>
+        </button>
+
+        <button type="button" class="hero-damage-pill" data-dmg="rebuild">
+          <span class="hdp-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </span>
+          <span class="hdp-label">Full Rebuild</span>
+        </button>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1312,6 +1391,9 @@ and smoke recovery, mold remediation, and full rebuilds."
                 <option value="water">Water Damage</option>
                 <option value="fire">Fire & Smoke</option>
                 <option value="mold">Mold Remediation</option>
+                <option value="storm">Storm Damage</option>
+                <option value="hazmat">Hazmat & Asbestos</option>
+                <option value="trauma">Trauma & Crime Scene</option>
                 <option value="rebuild">Full Rebuild</option>
                 <option value="other">Other / Not Sure</option>
               </select>
@@ -1331,6 +1413,18 @@ and smoke recovery, mold remediation, and full rebuilds."
           <button type="submit" class="btn-primary btn-full" id="form-submit">Send Message</button>
         </form>
       </div>
-    </div>
-  </div>
 </section>
+
+<!-- Hero Info Slide-out Drawer -->
+<div class="hero-info-drawer" id="hero-info-drawer" aria-hidden="true" role="dialog" aria-labelledby="hid-title">
+  <button class="hid-close" id="hid-close-btn" aria-label="Close details">&times;</button>
+  <div class="hid-image-wrap">
+    <img id="hid-img" src="" alt="" loading="lazy">
+  </div>
+  <div class="hid-content">
+    <h3 class="hid-title" id="hid-title"></h3>
+    <p class="hid-desc" id="hid-desc"></p>
+    <ul class="hid-bullets" id="hid-bullets"></ul>
+    <a href="#contact" class="btn-primary hid-cta" id="hid-cta-btn">Get Help Now</a>
+  </div>
+</div>
