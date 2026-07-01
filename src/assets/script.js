@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Set up mobile image sources on initial load if screen is narrow
+  if (window.innerWidth <= 900) {
+    document.querySelectorAll('.hero-banner-img').forEach(img => {
+      img.src = '/assets/water_damage_mobile.png';
+    });
+    const mainImg = document.getElementById('hero-main-img');
+    if (mainImg) {
+      mainImg.src = '/assets/water_damage_mobile.png';
+    }
+  }
+
   // Set up carousel clones for mobile
   const damagesRow = document.querySelector('.hero-damages-row');
   if (damagesRow) {
@@ -15,44 +26,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const damageInfo = {
     water: {
       title: "Water Damage",
-      subtitle: "Rapid Extraction & Structural Drying",
-      img: "/assets/water-mops.png",
+      subtitle: 'Rapid <span class="sub-accent">Extraction</span> & Structural Drying',
+      img: "/assets/water_damage_panorama.png",
+      imgMobile: "/assets/water_damage_mobile.png",
       desc: "Professional mitigation, extraction, and drying services for floods, pipe bursts, and sewage backups."
     },
     fire: {
       title: "Fire & Smoke",
-      subtitle: "Soot, Odor & Structural Restoration",
-      img: "/assets/emergency-mops.png",
+      subtitle: 'Soot, Odor & Structural <span class="sub-accent">Restoration</span>',
+      img: "/assets/fire_damage_panorama.png",
+      imgMobile: "/assets/fire_damage_mobile.png",
       desc: "Comprehensive fire damage restoration, smoke odor removal, and structural soot cleaning."
     },
     mold: {
       title: "Mold Remediation",
-      subtitle: "Safe Containment & Spore Elimination",
-      img: "/assets/mold-mops.png",
+      subtitle: 'Safe Containment & Spore <span class="sub-accent">Elimination</span>',
+      img: "/assets/mold_remediation_panorama.png",
+      imgMobile: "/assets/mold_remediation_mobile.png",
       desc: "Certified mold inspection, containment, and removal services conforming to IICRC S520 standards."
     },
     storm: {
       title: "Storm Damage",
-      subtitle: "Emergency Tarping & Board-Ups",
-      img: "/assets/damage-mops.avif",
+      subtitle: 'Emergency Tarping & <span class="sub-accent">Board-Ups</span>',
+      img: "/assets/storm_damage_panorama.png",
+      imgMobile: "/assets/storm_damage_mobile.png",
       desc: "Rapid emergency tarping, board-ups, and structural stabilization following wind and storm events."
     },
     hazmat: {
       title: "Hazmat & Asbestos",
-      subtitle: "Certified Lead & Asbestos Abatement",
-      img: "/assets/document-mops.png",
+      subtitle: 'Certified Lead & Asbestos <span class="sub-accent">Abatement</span>',
+      img: "/assets/hazmat_abatement_panorama.png",
+      imgMobile: "/assets/hazmat_abatement_mobile.png",
       desc: "Certified containment and removal of asbestos, lead paint, and hazardous chemical residues."
     },
     trauma: {
       title: "Trauma Cleanup",
-      subtitle: "Compassionate Biohazard Sanitization",
-      img: "/assets/rental-emergency-response.png",
+      subtitle: 'Compassionate Biohazard <span class="sub-accent">Sanitization</span>',
+      img: "/assets/trauma_cleanup_panorama.png",
+      imgMobile: "/assets/trauma_cleanup_mobile.png",
       desc: "Highly respectful, certified biohazard remediation for trauma, accident, and crime scene environments."
     },
     rebuild: {
       title: "Full Rebuild",
-      subtitle: "Complete Design-Build Contractor Services",
-      img: "/assets/rebuild-mops.png",
+      subtitle: 'Complete Design-Build Contractor <span class="sub-accent">Services</span>',
+      img: "/assets/full_rebuild_panorama.png",
+      imgMobile: "/assets/full_rebuild_mobile.png",
       desc: "Complete start-to-finish design, general contracting, and reconstruction services."
     }
   };
@@ -84,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setTimeout(() => {
       subEls.forEach(el => {
-        el.textContent = info.subtitle;
+        el.innerHTML = info.subtitle;
         el.style.opacity = '1';
       });
     }, 150);
@@ -100,6 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgEl = document.getElementById('hero-main-img');
 
     if (bannersEl && imgEl) {
+      const isMobile = window.innerWidth <= 900;
+      const imageSrc = isMobile ? info.imgMobile : info.img;
+
       if (!bannersDismissed && key !== 'water') {
         bannersDismissed = true;
         // Cross-fade: fade out load banners, fade in main image
@@ -108,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
           bannersEl.style.display = 'none';
         }, 400);
 
-        imgEl.src = info.img;
+        imgEl.src = imageSrc;
         imgEl.alt = info.title + " Restoration Services";
         imgEl.style.opacity = '1';
         imgEl.style.pointerEvents = 'auto';
@@ -117,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imgEl.style.opacity = '0.3';
         imgEl.style.transform = 'scale(1.02)';
         setTimeout(() => {
-          imgEl.src = info.img;
+          imgEl.src = imageSrc;
           imgEl.alt = info.title + " Restoration Services";
           imgEl.style.opacity = '1';
           imgEl.style.transform = 'scale(1)';
