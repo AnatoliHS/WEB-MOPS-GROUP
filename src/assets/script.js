@@ -72,16 +72,48 @@ document.addEventListener('DOMContentLoaded', () => {
       img: "/assets/full_rebuild_panorama.png",
       imgMobile: "/assets/full_rebuild_mobile.png",
       desc: "Complete start-to-finish design, general contracting, and reconstruction services."
+    },
+    janitorial: {
+      title: "Janitorial Services",
+      subtitle: 'Precision Commercial & Sanitation <span class="sub-accent">Services</span>',
+      img: "/assets/mops-maid.jpg",
+      imgMobile: "/assets/mops-maid-mobile.jpg",
+      desc: "We deliver professional cleaning built on precision, accountability, and measurable quality."
     }
   };
 
   let activeDmgKey = "water";
   let bannersDismissed = false; // Flag to track if we've crossfaded from banners to single image
 
+  let pageInitialized = false;
+
+  function splitTextIntoSpans(text, initialOffset = 0) {
+    return text.split('').map((char, idx) => {
+      const delay = idx * 25 + initialOffset;
+      if (char === ' ') {
+        return `<span class="letter letter-space" style="transition-delay: ${delay}ms">&nbsp;</span>`;
+      }
+      return `<span class="letter" style="transition-delay: ${delay}ms">${char}</span>`;
+    }).join('');
+  }
+
   function setActiveService(key) {
     const info = damageInfo[key];
     if (!info) return;
     activeDmgKey = key;
+
+    // Update dynamic title elements with letter-by-letter stagger reveal
+    const titleEls = document.querySelectorAll('.hero-dynamic-title');
+    titleEls.forEach(el => {
+      el.classList.remove('active');
+      const offset = pageInitialized ? 0 : 1000;
+      el.innerHTML = splitTextIntoSpans(info.title, offset);
+    });
+    setTimeout(() => {
+      titleEls.forEach(el => {
+        el.classList.add('active');
+      });
+    }, 50);
 
     // Update dynamic description elements
     const descEls = document.querySelectorAll('.hero-dynamic-desc');
@@ -169,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.remove('is-active');
       }
     });
+    pageInitialized = true; // Set initialized flag after first run
   }
 
   // Bind mouse and click interactions to all pills (originals and clones)

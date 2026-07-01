@@ -21,12 +21,17 @@ and smoke recovery, mold remediation, and full rebuilds."
         </h1>
       </div>
       <div class="hero-top-right">
+        <p class="hero-intro-text reveal-up" style="--d:450ms">
+          Professional emergency response, insurance claim support, and full rebuild services for homes and commercial
+          properties.
+        </p>
         <!-- Mobile Category Dropdown (Only visible on mobile) -->
         <div class="hero-mobile-dropdown-container reveal-up" style="--d:500ms">
           <button type="button" class="hero-mobile-dropdown-trigger" id="hero-mobile-dropdown-trigger">
             <span class="dropdown-trigger-label" id="dropdown-trigger-label">Water Damage</span>
             <span class="dropdown-trigger-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </span>
@@ -39,15 +44,8 @@ and smoke recovery, mold remediation, and full rebuilds."
             <button type="button" class="hero-mobile-dropdown-item" data-dmg="hazmat">Hazmat &amp; Asbestos</button>
             <button type="button" class="hero-mobile-dropdown-item" data-dmg="trauma">Trauma Cleanup</button>
             <button type="button" class="hero-mobile-dropdown-item" data-dmg="rebuild">Full Rebuild</button>
+            <button type="button" class="hero-mobile-dropdown-item" data-dmg="janitorial">Janitorial Services</button>
           </div>
-        </div>
-
-        <span class="hero-dynamic-sub reveal-up" style="--d:550ms">Rapid <span class="sub-accent">Extraction</span> & Structural Drying</span>
-        <p class="hero-dynamic-desc reveal-up" style="--d:600ms">
-          Professional mitigation, extraction, and drying services for floods, pipe bursts, and sewage backups.
-        </p>
-        <div class="hero-dynamic-actions reveal-up" style="--d:750ms">
-          <a href="#contact" class="hero-dynamic-cta">Request Help for Water Damage &rarr;</a>
         </div>
       </div>
     </div>
@@ -131,6 +129,17 @@ and smoke recovery, mold remediation, and full rebuilds."
             <span class="hdp-label">Full Rebuild</span>
           </button>
 
+          <button type="button" class="hero-damage-pill" data-dmg="janitorial">
+            <span class="hdp-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z" />
+              </svg>
+            </span>
+            <span class="hdp-label">Janitorial Services</span>
+          </button>
+
         </div>
       </div>
     </div>
@@ -155,10 +164,25 @@ and smoke recovery, mold remediation, and full rebuilds."
         <img class="hero-banner-img" src="/assets/water_damage_panorama.png" alt="Water Damage Restoration">
       </div>
     </div>
-    <img id="hero-main-img" class="hero-main-img" src="/assets/water_damage_panorama.png" alt="Water Damage Restoration" style="opacity: 0; pointer-events: none;">
-    
+    <img id="hero-main-img" class="hero-main-img" src="/assets/water_damage_panorama.png" alt="Water Damage Restoration"
+      style="opacity: 0; pointer-events: none;">
+
     <!-- Shading Overlay for Text Readability -->
     <div class="hero-bottom-overlay"></div>
+
+    <!-- Dynamic Section Title Overlaid on top-left of Image -->
+    <div class="hero-panel-overlay">
+      <h2 class="hero-panel-title hero-dynamic-title">Water Damage</h2>
+      <div class="hero-panel-content">
+        <span class="hero-dynamic-sub">Rapid <span class="sub-accent">Extraction</span> &amp; Structural Drying</span>
+        <p class="hero-dynamic-desc">
+          Professional mitigation, extraction, and drying services for floods, pipe bursts, and sewage backups.
+        </p>
+        <div class="hero-dynamic-actions">
+          <a href="#contact" class="hero-dynamic-cta">Request Help for Water Damage &rarr;</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -270,138 +294,160 @@ and smoke recovery, mold remediation, and full rebuilds."
       <div class="services-list">
         <!-- Service 1: Emergency Mitigation -->
         <div class="service-accordion-item active" id="service-emergency" data-service="emergency">
-          <div class="service-accordion-header">
-            <div class="service-accordion-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
+          <div class="service-text-wrapper">
+            <div class="service-accordion-header">
+              <div class="service-accordion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <h3 class="service-accordion-title">Emergency Mitigation</h3>
+              <span class="service-accordion-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
             </div>
-            <h3 class="service-accordion-title">Emergency Mitigation</h3>
-            <span class="service-accordion-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </span>
+            <div class="service-accordion-content">
+              <p class="service-accordion-body">Rapid response to stabilize your property, extract standing water, clean
+                smoke residues, and secure your space immediately after a loss.</p>
+              <ul class="service-details-list">
+                <li>Water damage extraction and structural drying</li>
+                <li>Flood and sewage backup mitigation</li>
+                <li>Fire and smoke damage cleanup and deodorization</li>
+                <li>Wind and storm damage stabilization (board-up, tarping, temporary shoring)</li>
+              </ul>
+              <div class="service-accordion-tags">
+                <span>24/7 Dispatch</span>
+                <span>Rapid Response</span>
+                <span>Site Stabilization</span>
+              </div>
+            </div>
           </div>
-          <div class="service-accordion-content">
-            <p class="service-accordion-body">Rapid response to stabilize your property, extract standing water, clean
-              smoke residues, and secure your space immediately after a loss.</p>
-            <ul class="service-details-list">
-              <li>Water damage extraction and structural drying</li>
-              <li>Flood and sewage backup mitigation</li>
-              <li>Fire and smoke damage cleanup and deodorization</li>
-              <li>Wind and storm damage stabilization (board-up, tarping, temporary shoring)</li>
-            </ul>
-            <div class="service-accordion-tags">
-              <span>24/7 Dispatch</span>
-              <span>Rapid Response</span>
-              <span>Site Stabilization</span>
-            </div>
+          <div class="service-desktop-image-wrapper">
+            <img src="/assets/emergency-mops.png" alt="Emergency property response service" loading="lazy">
           </div>
         </div>
 
         <!-- Service 2: Environmental Hazard Abatement -->
         <div class="service-accordion-item" id="service-abatement" data-service="abatement">
-          <div class="service-accordion-header">
-            <div class="service-accordion-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
+          <div class="service-text-wrapper">
+            <div class="service-accordion-header">
+              <div class="service-accordion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h3 class="service-accordion-title">Environmental Hazard Abatement</h3>
+              <span class="service-accordion-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
             </div>
-            <h3 class="service-accordion-title">Environmental Hazard Abatement</h3>
-            <span class="service-accordion-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </span>
+            <div class="service-accordion-content">
+              <p class="service-accordion-body">Safe, compliant removal and containment of hazardous materials, mould
+                spores, and biological contaminants under strict industry standards.</p>
+              <ul class="service-details-list">
+                <li>Asbestos Abatement (Type 1, 2) in accordance with O. Reg. 278/05 and IICRC S520</li>
+                <li>Lead Paint Removal and Encapsulation</li>
+                <li>Mould Remediation following IICRC S520 Standards</li>
+                <li>Biohazard and Trauma Scene Cleanup</li>
+                <li>Infectious Disease Control / Decontamination Cleaning</li>
+              </ul>
+              <div class="service-accordion-tags">
+                <span>Asbestos Certified</span>
+                <span>Mould Remediation</span>
+                <span>O. Reg. 278/05</span>
+              </div>
+            </div>
           </div>
-          <div class="service-accordion-content">
-            <p class="service-accordion-body">Safe, compliant removal and containment of hazardous materials, mould
-              spores, and biological contaminants under strict industry standards.</p>
-            <ul class="service-details-list">
-              <li>Asbestos Abatement (Type 1, 2) in accordance with O. Reg. 278/05 and IICRC S520</li>
-              <li>Lead Paint Removal and Encapsulation</li>
-              <li>Mould Remediation following IICRC S520 Standards</li>
-              <li>Biohazard and Trauma Scene Cleanup</li>
-              <li>Infectious Disease Control / Decontamination Cleaning</li>
-            </ul>
-            <div class="service-accordion-tags">
-              <span>Asbestos Certified</span>
-              <span>Mould Remediation</span>
-              <span>O. Reg. 278/05</span>
-            </div>
+          <div class="service-desktop-image-wrapper">
+            <img src="/assets/mold-mops.png" alt="Environmental Hazard Abatement and Mould Remediation" loading="lazy">
           </div>
         </div>
 
         <!-- Service 3: Structural Restoration & Reconstruction -->
         <div class="service-accordion-item" id="service-reconstruction" data-service="reconstruction">
-          <div class="service-accordion-header">
-            <div class="service-accordion-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
+          <div class="service-text-wrapper">
+            <div class="service-accordion-header">
+              <div class="service-accordion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <h3 class="service-accordion-title">Structural Restoration &amp; Reconstruction</h3>
+              <span class="service-accordion-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
             </div>
-            <h3 class="service-accordion-title">Structural Restoration &amp; Reconstruction</h3>
-            <span class="service-accordion-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </span>
+            <div class="service-accordion-content">
+              <p class="service-accordion-body">From structural cleanup and debris removal to complete rebuilds and
+                final
+                finishes, we return your property to pre-loss condition.</p>
+              <ul class="service-details-list">
+                <li>Demolition and debris removal</li>
+                <li>Structural drying, cleaning, and repair</li>
+                <li>Contents restoration and pack-out</li>
+                <li>Full reconstruction and finishing</li>
+              </ul>
+              <div class="service-accordion-tags">
+                <span>Structural Repair</span>
+                <span>Reconstruction</span>
+                <span>Turnkey Delivery</span>
+              </div>
+            </div>
           </div>
-          <div class="service-accordion-content">
-            <p class="service-accordion-body">From structural cleanup and debris removal to complete rebuilds and final
-              finishes, we return your property to pre-loss condition.</p>
-            <ul class="service-details-list">
-              <li>Demolition and debris removal</li>
-              <li>Structural drying, cleaning, and repair</li>
-              <li>Contents restoration and pack-out</li>
-              <li>Full reconstruction and finishing</li>
-            </ul>
-            <div class="service-accordion-tags">
-              <span>Structural Repair</span>
-              <span>Reconstruction</span>
-              <span>Turnkey Delivery</span>
-            </div>
+          <div class="service-desktop-image-wrapper">
+            <img src="/assets/rebuild-mops.png" alt="Structural Reconstruction and Restoration" loading="lazy">
           </div>
         </div>
 
         <!-- Service 4: Contents Management -->
         <div class="service-accordion-item" id="service-contents" data-service="contents">
-          <div class="service-accordion-header">
-            <div class="service-accordion-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="21 8 21 21 3 21 3 8" />
-                <rect x="1" y="3" width="22" height="5" />
-                <line x1="10" y1="12" x2="14" y2="12" />
-              </svg>
+          <div class="service-text-wrapper">
+            <div class="service-accordion-header">
+              <div class="service-accordion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="21 8 21 21 3 21 3 8" />
+                  <rect x="1" y="3" width="22" height="5" />
+                  <line x1="10" y1="12" x2="14" y2="12" />
+                </svg>
+              </div>
+              <h3 class="service-accordion-title">Contents Management</h3>
+              <span class="service-accordion-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
             </div>
-            <h3 class="service-accordion-title">Contents Management</h3>
-            <span class="service-accordion-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </span>
+            <div class="service-accordion-content">
+              <p class="service-accordion-body">Careful documenting, packing, cleaning, and climate-controlled storage
+                of
+                your personal belongings and business assets during restoration.</p>
+              <ul class="service-details-list">
+                <li>On-site and off-site contents cleaning</li>
+                <li>Pack-out inventory and documentation</li>
+                <li>Secure climate-controlled storage</li>
+                <li>Electronics and textiles restoration</li>
+              </ul>
+              <div class="service-accordion-tags">
+                <span>Inventory Tracking</span>
+                <span>Secure Storage</span>
+                <span>Textiles &amp; Electronics</span>
+              </div>
+            </div>
           </div>
-          <div class="service-accordion-content">
-            <p class="service-accordion-body">Careful documenting, packing, cleaning, and climate-controlled storage of
-              your personal belongings and business assets during restoration.</p>
-            <ul class="service-details-list">
-              <li>On-site and off-site contents cleaning</li>
-              <li>Pack-out inventory and documentation</li>
-              <li>Secure climate-controlled storage</li>
-              <li>Electronics and textiles restoration</li>
-            </ul>
-            <div class="service-accordion-tags">
-              <span>Inventory Tracking</span>
-              <span>Secure Storage</span>
-              <span>Textiles &amp; Electronics</span>
-            </div>
+          <div class="service-desktop-image-wrapper">
+            <img src="/assets/document-mops.png" alt="Contents Management and Documenting" loading="lazy">
           </div>
         </div>
       </div>
@@ -425,6 +471,105 @@ and smoke recovery, mold remediation, and full rebuilds."
 </section>
 
 <!-- ════════════════════════════════════════
+     4.25 JANITORIAL SERVICES
+════════════════════════════════════════ -->
+<section id="janitorial-services-section" class="janitorial-section">
+  <div class="container">
+    <!-- Centered Section Header -->
+    <div class="section-header reveal visible">
+      <h2 class="section-title">Janitorial <span>Services</span></h2>
+      <p class="section-lead">MOPSINC provides precision driven commercial cleaning, janitorial maintenance, and
+        sanitation solutions built on accountability and measurable quality.</p>
+    </div>
+
+    <!-- Full-Width Media Viewport -->
+    <div class="janitorial-hero-media reveal-up visible">
+      <video class="janitorial-banner-video" autoplay loop muted playsinline preload="auto">
+        <source src="/assets/cleanind-two.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Image Text Overlay -->
+      <div class="janitorial-hero-overlay">
+        <h3 class="janitorial-hero-title">We Love Cleaning</h3>
+        <span class="janitorial-hero-subtitle">SO YOU DON'T HAVE TO</span>
+      </div>
+    </div>
+
+    <!-- Bento Grid Features -->
+    <div class="janitorial-bento-grid reveal-up visible">
+      <!-- Card 1 (60% width) -->
+      <div class="janitorial-bento-card bento-wide">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <line x1="9" y1="3" x2="9" y2="21" />
+          </svg>
+        </div>
+        <div class="feat-text">
+          <h4>Commercial Workspaces</h4>
+          <p>Tailored janitorial plans to keep office spaces, meeting rooms, and common areas immaculate, safe, and
+            hygienic.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 (40% width) -->
+      <div class="janitorial-bento-card bento-narrow">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+        </div>
+        <div class="feat-text">
+          <h4>Post-Construction Cleanup</h4>
+          <p>Comprehensive dust suppression, plaster residue scrubbing, and detail cleaning to prepare new builds for
+            immediate occupancy.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 (40% width) -->
+      <div class="janitorial-bento-card bento-narrow">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div class="feat-text">
+          <h4>Industrial Facility Sanitizing</h4>
+          <p>Heavy-duty degreasing, warehouse floor scrubbing, and workspace decontamination compliant with industrial
+            safety standards.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 (60% width) -->
+      <div class="janitorial-bento-card bento-wide">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+            <path d="M6 11V7M18 11V7" />
+          </svg>
+        </div>
+        <div class="feat-text">
+          <h4>Government &amp; Secure Facilities</h4>
+          <p>Vetted cleaning staff delivering high-security janitorial maintenance for administrative, municipal, and
+            secure government properties.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="janitorial-actions reveal visible">
+      <a href="#contact" class="btn-primary">Schedule a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
      4.5 PEACE OF MIND / STRESS RELIEF
 ════════════════════════════════════════ -->
 <section id="peace-of-mind" class="stress-section">
@@ -437,7 +582,10 @@ and smoke recovery, mold remediation, and full rebuilds."
         <a href="#contact" class="btn-primary">Get Started Today</a>
       </div>
       <div class="stress-image-wrap reveal-right">
-        <img src="/assets/couple-mops.avif" alt="Family at ease after restoration work" loading="lazy">
+        <video autoplay loop muted playsinline class="stress-video">
+          <source src="/assets/couple.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
 
         <!-- Speech Bubbles -->
         <div class="bubble-group bubble-group-aaron">
@@ -1446,6 +1594,7 @@ and smoke recovery, mold remediation, and full rebuilds."
                 <option value="hazmat">Hazmat & Asbestos</option>
                 <option value="trauma">Trauma & Crime Scene</option>
                 <option value="rebuild">Full Rebuild</option>
+                <option value="janitorial">Janitorial Services</option>
                 <option value="other">Other / Not Sure</option>
               </select>
             </div>
