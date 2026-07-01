@@ -11,196 +11,229 @@ document.addEventListener('DOMContentLoaded', () => {
     damagesRow.classList.add('is-carousel');
   }
 
-  // Handle damage pill clicks responsively
-  document.querySelectorAll('.hero-damage-pill').forEach(function (pill) {
-    pill.addEventListener('click', function (e) {
-      var serviceVal = pill.dataset.dmg;
-      if (!serviceVal) return;
-
-      // If mobile layout or touch-only device
-      if (window.matchMedia('(hover: none)').matches || window.innerWidth <= 900) {
-        e.preventDefault();
-        e.stopPropagation();
-        populateDrawer(serviceVal);
-        showDrawer();
-      } else {
-        // Desktop click: pre-select service and smooth-scroll to contact
-        var select = document.getElementById('contact-service');
-        if (select) {
-          select.value = serviceVal;
-          select.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-        var contactSection = document.getElementById('contact');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  });
-
-  // --- Hero Info Drawer Slide-out Logic ---
+  // --- Damage Types Showcase & Info Swapper (ZettaJoule style) ---
   const damageInfo = {
     water: {
-      title: "Water Damage Restoration",
+      title: "Water Damage",
+      subtitle: "Rapid Extraction & Structural Drying",
       img: "/assets/water-mops.png",
-      desc: "Professional mitigation, extraction, and drying services for floods, pipe bursts, and sewage backups.",
-      bullets: [
-        "24/7 emergency water extraction",
-        "Rapid structural drying & dehumidification",
-        "Thermal imaging leak detection",
-        "Sewage cleanup & disinfection"
-      ]
+      desc: "Professional mitigation, extraction, and drying services for floods, pipe bursts, and sewage backups."
     },
     fire: {
-      title: "Fire & Smoke Restoration",
+      title: "Fire & Smoke",
+      subtitle: "Soot, Odor & Structural Restoration",
       img: "/assets/emergency-mops.png",
-      desc: "Comprehensive fire damage restoration, smoke odor removal, and structural soot cleaning.",
-      bullets: [
-        "Smoke odor neutralization",
-        "Detailed soot & ash decontamination",
-        "Structural containment & safety boarding",
-        "Content cleanup & pack-out services"
-      ]
+      desc: "Comprehensive fire damage restoration, smoke odor removal, and structural soot cleaning."
     },
     mold: {
       title: "Mold Remediation",
+      subtitle: "Safe Containment & Spore Elimination",
       img: "/assets/mold-mops.png",
-      desc: "Certified mold inspection, containment, and removal services conforming to IICRC S520 standards.",
-      bullets: [
-        "Air quality testing & diagnostics",
-        "Negative pressure containment chambers",
-        "HEPA vacuuming & antimicrobial treatments",
-        "Absolute moisture source correction"
-      ]
+      desc: "Certified mold inspection, containment, and removal services conforming to IICRC S520 standards."
     },
     storm: {
-      title: "Storm & Wind Damage",
+      title: "Storm Damage",
+      subtitle: "Emergency Tarping & Board-Ups",
       img: "/assets/damage-mops.avif",
-      desc: "Rapid emergency tarping, board-ups, and structural stabilization following wind and storm events.",
-      bullets: [
-        "Emergency roof tarping & board-ups",
-        "Fallen tree & debris removal",
-        "Temporary power & lighting setup",
-        "Complete wind & hail repair"
-      ]
+      desc: "Rapid emergency tarping, board-ups, and structural stabilization following wind and storm events."
     },
     hazmat: {
-      title: "Hazardous Material Abatement",
+      title: "Hazmat & Asbestos",
+      subtitle: "Certified Lead & Asbestos Abatement",
       img: "/assets/document-mops.png",
-      desc: "Certified containment and removal of asbestos, lead paint, and hazardous chemical residues.",
-      bullets: [
-        "Ministry-compliant asbestos abatement",
-        "Lead paint stabilization & removal",
-        "Heavy chemical bio-cleanup",
-        "Full hazard documentation & clearance"
-      ]
+      desc: "Certified containment and removal of asbestos, lead paint, and hazardous chemical residues."
     },
     trauma: {
-      title: "Trauma & Crime Scene Cleanup",
+      title: "Trauma Cleanup",
+      subtitle: "Compassionate Biohazard Sanitization",
       img: "/assets/rental-emergency-response.png",
-      desc: "Highly respectful, certified biohazard remediation for trauma, accident, and crime scene environments.",
-      bullets: [
-        "Discreet, compassionate 24/7 service",
-        "Biohazard and fluid decontamination",
-        "Advanced sanitization & odor control",
-        "Full compliance with local regulations"
-      ]
+      desc: "Highly respectful, certified biohazard remediation for trauma, accident, and crime scene environments."
     },
     rebuild: {
-      title: "Full Property Rebuild",
+      title: "Full Rebuild",
+      subtitle: "Complete Design-Build Contractor Services",
       img: "/assets/rebuild-mops.png",
-      desc: "Complete start-to-finish design, general contracting, and reconstruction services for residential and commercial spaces.",
-      bullets: [
-        "Full structural engineering & blueprints",
-        "Permit acquisition & inspections",
-        "Drywall, framing, paint & finishing",
-        "IICRC-certified reconstruction protocols"
-      ]
+      desc: "Complete start-to-finish design, general contracting, and reconstruction services."
     }
   };
 
-  const drawer = document.getElementById('hero-info-drawer');
-  const dImg = document.getElementById('hid-img');
-  const dTitle = document.getElementById('hid-title');
-  const dDesc = document.getElementById('hid-desc');
-  const dBullets = document.getElementById('hid-bullets');
-  const dClose = document.getElementById('hid-close-btn');
-  const dCta = document.getElementById('hid-cta-btn');
+  let activeDmgKey = "water";
+  let bannersDismissed = false; // Flag to track if we've crossfaded from banners to single image
 
-  function populateDrawer(key) {
+  function setActiveService(key) {
     const info = damageInfo[key];
     if (!info) return;
+    activeDmgKey = key;
 
-    if (dImg && info.img) {
-      dImg.src = info.img;
-      dImg.alt = info.title;
-    }
+    // Update dynamic description elements
+    const descEls = document.querySelectorAll('.hero-dynamic-desc');
+    descEls.forEach(el => {
+      el.style.opacity = '0';
+    });
+    setTimeout(() => {
+      descEls.forEach(el => {
+        el.textContent = info.desc;
+        el.style.opacity = '1';
+      });
+    }, 150);
 
-    dTitle.textContent = info.title;
-    dDesc.textContent = info.desc;
-    
-    // Clear and build bullets
-    dBullets.innerHTML = '';
-    info.bullets.forEach(txt => {
-      const li = document.createElement('li');
-      li.textContent = txt;
-      dBullets.appendChild(li);
+    // Update dynamic subtitle elements
+    const subEls = document.querySelectorAll('.hero-dynamic-sub');
+    subEls.forEach(el => {
+      el.style.opacity = '0';
+    });
+    setTimeout(() => {
+      subEls.forEach(el => {
+        el.textContent = info.subtitle;
+        el.style.opacity = '1';
+      });
+    }, 150);
+
+    // Update dynamic CTA actions
+    const ctaEls = document.querySelectorAll('.hero-dynamic-cta');
+    ctaEls.forEach(el => {
+      el.textContent = `Request Help for ${info.title} \u2192`;
     });
 
-    if (dCta) {
-      dCta.setAttribute('data-dmg', key);
+    // Transition from banners to single image on first interaction, otherwise do normal image fade
+    const bannersEl = document.querySelector('.hero-banners');
+    const imgEl = document.getElementById('hero-main-img');
+
+    if (bannersEl && imgEl) {
+      if (!bannersDismissed && key !== 'water') {
+        bannersDismissed = true;
+        // Cross-fade: fade out load banners, fade in main image
+        bannersEl.style.opacity = '0';
+        setTimeout(() => {
+          bannersEl.style.display = 'none';
+        }, 400);
+
+        imgEl.src = info.img;
+        imgEl.alt = info.title + " Restoration Services";
+        imgEl.style.opacity = '1';
+        imgEl.style.pointerEvents = 'auto';
+      } else if (bannersDismissed) {
+        // Normal hover transition on the main image
+        imgEl.style.opacity = '0.3';
+        imgEl.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          imgEl.src = info.img;
+          imgEl.alt = info.title + " Restoration Services";
+          imgEl.style.opacity = '1';
+          imgEl.style.transform = 'scale(1)';
+        }, 180);
+      }
     }
+
+    // Update active underline state on all matching pills (including clones)
+    document.querySelectorAll('.hero-damage-pill').forEach(pill => {
+      if (pill.dataset.dmg === key) {
+        pill.classList.add('is-active');
+      } else {
+        pill.classList.remove('is-active');
+      }
+    });
+
+    // Update dynamic mobile dropdown trigger label
+    const labelEl = document.getElementById('dropdown-trigger-label');
+    if (labelEl) {
+      labelEl.textContent = info.title;
+    }
+
+    // Highlight active item inside the mobile dropdown menu
+    document.querySelectorAll('.hero-mobile-dropdown-item').forEach(item => {
+      if (item.dataset.dmg === key) {
+        item.classList.add('is-active');
+      } else {
+        item.classList.remove('is-active');
+      }
+    });
   }
 
-  function showDrawer() {
-    if (drawer) {
-      drawer.classList.add('is-active');
-      drawer.setAttribute('aria-hidden', 'false');
-    }
-  }
-
-  function hideDrawer() {
-    if (drawer) {
-      drawer.classList.remove('is-active');
-      drawer.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  // Bind mouse hover events to pills
-  document.querySelectorAll('.hero-damage-pill').forEach(pill => {
-    pill.addEventListener('mouseenter', () => {
+  // Bind mouse and click interactions to all pills (originals and clones)
+  function setupPillInteractions() {
+    const pills = document.querySelectorAll('.hero-damage-pill');
+    pills.forEach(pill => {
       const key = pill.dataset.dmg;
       if (!key) return;
-      populateDrawer(key);
-      showDrawer();
-    });
 
-    pill.addEventListener('mouseleave', () => {
-      hideDrawer();
-    });
-  });
+      // Mouse hover swap (desktop)
+      pill.addEventListener('mouseenter', () => {
+        setActiveService(key);
+      });
 
-  if (dClose) {
-    // Explicit close button click
-    dClose.addEventListener('click', () => {
-      hideDrawer();
+      // Click / Tap swap (desktop & mobile)
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setActiveService(key);
+      });
     });
   }
 
-  if (dCta) {
-    // Drawer CTA click action
-    dCta.addEventListener('click', () => {
-      const key = dCta.getAttribute('data-dmg');
-      if (key) {
-        const select = document.getElementById('contact-service');
-        if (select) {
-          select.value = key;
-          select.dispatchEvent(new Event('change', { bubbles: true }));
+  // Bind custom dropdown interactions on mobile
+  function setupDropdownInteractions() {
+    const container = document.querySelector('.hero-mobile-dropdown-container');
+    const trigger = document.getElementById('hero-mobile-dropdown-trigger');
+    const menu = document.getElementById('hero-mobile-dropdown-menu');
+    const items = document.querySelectorAll('.hero-mobile-dropdown-item');
+
+    if (!container || !trigger || !menu) return;
+
+    // Toggle dropdown open/close on trigger click
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      container.classList.toggle('is-open');
+    });
+
+    // Option selection
+    items.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const key = item.dataset.dmg;
+        if (key) {
+          setActiveService(key);
         }
+        container.classList.remove('is-open');
+      });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target)) {
+        container.classList.remove('is-open');
       }
-      hideDrawer();
     });
   }
+
+  // Bind click action to the dynamic CTA to pre-select dropdown & scroll to form
+  const dynamicCta = document.getElementById('hero-dynamic-cta');
+  if (dynamicCta) {
+    dynamicCta.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const select = document.getElementById('contact-service');
+      if (select) {
+        select.value = activeDmgKey;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Initialize showcase and bind actions
+  setActiveService("water");
+  setupPillInteractions();
+  setupDropdownInteractions();
+
+  // Re-run setup after a brief timeout to ensure clones are bound
+  setTimeout(setupPillInteractions, 100);
 
 
 
