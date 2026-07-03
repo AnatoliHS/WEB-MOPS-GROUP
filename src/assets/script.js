@@ -102,6 +102,93 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!info) return;
     activeDmgKey = key;
 
+    // Toggle class on the bottom panel for styling overrides (e.g. CTA buttons)
+    const bottomPanel = document.querySelector('.hero-bottom-panel');
+    if (bottomPanel) {
+      bottomPanel.classList.toggle('is-janitorial', key === 'janitorial');
+    }
+
+
+    // Toggle hero header text wrappers dynamically
+    const defaultHeadlines = document.querySelectorAll('.hero-headline-wrapper.default-hero-text');
+    const janitorialHeadlines = document.querySelectorAll('.hero-headline-wrapper.janitorial-hero-text');
+    const defaultIntros = document.querySelectorAll('.hero-intro-wrapper.default-hero-text');
+    const janitorialIntros = document.querySelectorAll('.hero-intro-wrapper.janitorial-hero-text');
+
+    if (key === 'janitorial') {
+      defaultHeadlines.forEach(el => el.classList.remove('active'));
+      defaultIntros.forEach(el => el.classList.remove('active'));
+
+      janitorialHeadlines.forEach(el => {
+        const wasActive = el.classList.contains('active');
+        el.classList.add('active');
+        if (!wasActive) {
+          el.querySelectorAll('.reveal-up').forEach(rev => {
+            rev.style.transition = 'none';
+            rev.style.transitionDelay = '0s';
+            rev.classList.remove('visible');
+            void rev.offsetHeight; // Force reflow
+            rev.style.transition = '';
+            rev.style.transitionDelay = '';
+            rev.classList.add('visible');
+          });
+        }
+      });
+      janitorialIntros.forEach(el => {
+        const wasActive = el.classList.contains('active');
+        el.classList.add('active');
+        if (!wasActive) {
+          el.querySelectorAll('.reveal-up').forEach(rev => {
+            rev.style.transition = 'none';
+            rev.style.transitionDelay = '0s';
+            rev.classList.remove('visible');
+            void rev.offsetHeight; // Force reflow
+            rev.style.transition = '';
+            rev.style.transitionDelay = '';
+            rev.classList.add('visible');
+          });
+        }
+      });
+    } else {
+      let wasJanitorial = false;
+      janitorialHeadlines.forEach(el => {
+        if (el.classList.contains('active')) wasJanitorial = true;
+        el.classList.remove('active');
+      });
+      janitorialIntros.forEach(el => el.classList.remove('active'));
+
+      defaultHeadlines.forEach(el => {
+        const wasActive = el.classList.contains('active');
+        el.classList.add('active');
+        if (wasJanitorial || !wasActive) {
+          el.querySelectorAll('.reveal-up').forEach(rev => {
+            rev.style.transition = 'none';
+            rev.style.transitionDelay = '0s';
+            rev.classList.remove('visible');
+            void rev.offsetHeight; // Force reflow
+            rev.style.transition = '';
+            rev.style.transitionDelay = '';
+            rev.classList.add('visible');
+          });
+        }
+      });
+      defaultIntros.forEach(el => {
+        const wasActive = el.classList.contains('active');
+        el.classList.add('active');
+        if (wasJanitorial || !wasActive) {
+          el.querySelectorAll('.reveal-up').forEach(rev => {
+            rev.style.transition = 'none';
+            rev.style.transitionDelay = '0s';
+            rev.classList.remove('visible');
+            void rev.offsetHeight; // Force reflow
+            rev.style.transition = '';
+            rev.style.transitionDelay = '';
+            rev.classList.add('visible');
+          });
+        }
+      });
+    }
+
     // Update dynamic title elements with letter-by-letter stagger reveal
     const titleEls = document.querySelectorAll('.hero-dynamic-title');
     titleEls.forEach(el => {
@@ -202,6 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     pageInitialized = true; // Set initialized flag after first run
+    
+    // Dispatch scroll event to force navbar logo & CTA color checks to run immediately
+    window.dispatchEvent(new Event('scroll'));
   }
 
   // Bind mouse and click interactions to all pills (originals and clones)

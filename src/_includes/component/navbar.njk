@@ -1,41 +1,20 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#hero" class="nav-brand" aria-label="{{ site.name }} Home">
-      <svg class="nav-logo" viewBox="0 0 512.7 196.3" id="navbar-logo" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="logo-gradient" x1="413.1" y1="2.7" x2="413.1" y2="193.5" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#e9284f"/>
-            <stop offset=".2" stop-color="#ea314a"/>
-            <stop offset=".5" stop-color="#ed4a3e"/>
-            <stop offset=".8" stop-color="#f3732b"/>
-            <stop offset="1" stop-color="#f68722"/>
-          </linearGradient>
-        </defs>
-        <!-- MOPS (styled via class) -->
-        <g class="logo-text-mops">
-          <path d="M4.2,31.9h29.8l13.3,95.1h.4l13.3-95.1h29.8v132.8h-19.7v-100.6h-.4l-15.2,100.6h-17.5l-15.2-100.6h-.4v100.6H4.2V31.9Z"/>
-          <path d="M104.7,133.2V63.4c0-21.3,11.2-33.4,31.7-33.4s31.7,12.1,31.7,33.4v69.8c0,21.3-11.2,33.4-31.7,33.4s-31.7-12.1-31.7-33.4ZM147.2,134.5V62c0-9.5-4.2-13.1-10.8-13.1s-10.8,3.6-10.8,13.1v72.5c0,9.5,4.2,13.1,10.8,13.1s10.8-3.6,10.8-13.1Z"/>
-          <path d="M182.2,31.9h30.7c20.9,0,31.1,11.6,31.1,32.8v13.1c0,21.3-10.2,32.8-31.1,32.8h-9.9v54.1h-20.9V31.9ZM212.9,91.6c6.6,0,10.2-3,10.2-12.5v-15.7c0-9.5-3.6-12.5-10.2-12.5h-9.9v40.8h9.9Z"/>
-          <path d="M252.5,133.2v-7.6h19.7v9.1c0,9.5,4.2,12.9,10.8,12.9s10.8-3.4,10.8-13.3-4.2-18-17.8-30c-17.5-15.4-23.1-26.2-23.1-41.4s10.8-33,31.1-33,30.4,12.1,30.4,33.4v5.5h-19.7v-6.8c0-9.5-3.8-13.1-10.4-13.1s-10.4,3.6-10.4,12.7,4.4,16.7,18,28.7c17.5,15.4,23,26,23,42.5s-11,33.8-31.5,33.8-30.7-12.1-30.7-33.4Z"/>
-        </g>
-        <!-- INC (styled via class) -->
-        <g class="logo-text-inc">
-          <path d="M350.7,48h15.2v97h-15.2V48Z"/>
-          <path d="M377.3,48h19.1l14.8,58h.3v-58h13.6v97h-15.7l-18.3-70.8h-.3v70.8h-13.6V48Z"/>
-          <path d="M435.5,122.5v-52.1c0-15,7.8-23.8,22.4-23.8s22.4,8.9,22.4,23.8v10.3h-14.4v-11.2c0-6.4-3-9-7.6-9s-7.6,2.6-7.6,9v54.2c0,6.4,3,8.9,7.6,8.9s7.6-2.5,7.6-8.9v-14.8h14.4v13.7c0,15-7.8,23.8-22.4,23.8s-22.4-8.9-22.4-23.8Z"/>
-        </g>
-        <!-- Loop Circle Gradient -->
-        <path fill="url(#logo-gradient)" stroke-width="0" d="M413.1,193.5c-52.6,0-95.4-42.8-95.4-95.4S360.4,2.7,413.1,2.7s95.4,42.8,95.4,95.4-42.8,95.4-95.4,95.4ZM413.1,12.2c-47.4,0-85.9,38.5-85.9,85.9s38.5,85.9,85.9,85.9,85.9-38.5,85.9-85.9S460.4,12.2,413.1,12.2Z"/>
-      </svg>
+      <div class="nav-logo-wrap">
+        <img class="nav-logo logo-general active" src="/assets/mops-group-general.png" alt="MOPS Group Logo" loading="eager">
+        <img class="nav-logo logo-restoration" src="/assets/mops-group-resoration.png" alt="MOPS Group Restoration Logo" loading="lazy">
+        <img class="nav-logo logo-janitorial" src="/assets/mops-group-janitorial.png" alt="MOPS Group Janitorial Logo" loading="lazy">
+      </div>
     </a>
 
     <div class="nav-links" id="nav-links">
       <div class="nav-menu">
         <a href="#hero" class="nav-link">Home</a>
         <a href="#services" class="nav-link">Services</a>
-        <a href="#janitorial-services-section" class="nav-link">Janitorial</a>
         <a href="#process" class="nav-link">Capabilities</a>
         <a href="#trust" class="nav-link">Certifications</a>
+        <a href="#janitorial-services-section" class="nav-link">Janitorial</a>
         <a href="#rentals" class="nav-link">Rentals</a>
         <a href="#reviews" class="nav-link">Reviews</a>
         <a href="#faq" class="nav-link">FAQ</a>
@@ -52,11 +31,70 @@
 </nav>
 
 <script>
-  /* ─── Navbar scroll state ─── */
-  window.addEventListener('scroll', () => {
-    const nb = document.getElementById('navbar');
-    nb.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  /* ─── Navbar scroll state & dynamic logo swapper ─── */
+  (function() {
+    const navbar = document.getElementById('navbar');
+    const logoGeneral = document.querySelector('.nav-logo.logo-general');
+    const logoRestoration = document.querySelector('.nav-logo.logo-restoration');
+    const logoJanitorial = document.querySelector('.nav-logo.logo-janitorial');
+
+    function updateNavbar() {
+      if (!navbar) return;
+      const scrollY = window.scrollY;
+
+      // Scrolled class state
+      navbar.classList.toggle('scrolled', scrollY > 60);
+
+      const heroSection = document.getElementById('hero');
+      const janitorialSection = document.getElementById('janitorial-services-section');
+
+      if (!heroSection || !janitorialSection) return;
+
+      const heroHeight = heroSection.offsetHeight;
+      const jTop = janitorialSection.offsetTop;
+      const jHeight = janitorialSection.offsetHeight;
+
+      // Determine active logo type based on position
+      let activeLogo = 'general';
+
+      if (scrollY <= heroHeight - 72) {
+        // In the hero section
+        activeLogo = 'general';
+      } else if (scrollY < jTop - 80) {
+        // In mitigation / core services
+        activeLogo = 'restoration';
+      } else if (scrollY < jTop + jHeight - 80) {
+        // In Janitorial services
+        activeLogo = 'janitorial';
+      } else {
+        // Everything after Janitorial (Rentals, Reviews, FAQ, Footer)
+        activeLogo = 'general';
+      }
+
+      // Apply active classes to logos
+      if (logoGeneral) logoGeneral.classList.toggle('active', activeLogo === 'general');
+      if (logoRestoration) logoRestoration.classList.toggle('active', activeLogo === 'restoration');
+      if (logoJanitorial) logoJanitorial.classList.toggle('active', activeLogo === 'janitorial');
+
+      // Determine if navbar CTA should use orange (active Janitorial pill in Hero, OR currently inside Janitorial section)
+      let shouldBeOrange = false;
+      if (scrollY <= heroHeight - 72) {
+        const janitorialPill = document.querySelector('.hero-damage-pill[data-dmg="janitorial"]');
+        if (janitorialPill && janitorialPill.classList.contains('is-active')) {
+          shouldBeOrange = true;
+        }
+      } else if (activeLogo === 'janitorial') {
+        shouldBeOrange = true;
+      }
+      document.body.classList.toggle('hero-janitorial-active', shouldBeOrange);
+    }
+
+    window.addEventListener('scroll', updateNavbar);
+    window.addEventListener('resize', updateNavbar);
+    document.addEventListener('DOMContentLoaded', updateNavbar);
+    // Extra run to ensure initialization state matches viewport scroll offset on load
+    setTimeout(updateNavbar, 100);
+  })();
 
   /* ─── Mobile menu toggle ─── */
   function toggleMenu() {
