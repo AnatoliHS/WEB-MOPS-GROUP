@@ -329,14 +329,14 @@ footer,
   inset-inline: 0;
   z-index: 1000;
   transition: background var(--dur) var(--ease), backdrop-filter var(--dur) var(--ease);
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: none;
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
