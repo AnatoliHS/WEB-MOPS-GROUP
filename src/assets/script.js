@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set up carousel clones for mobile
   const damagesRow = document.querySelector('.hero-damages-row');
-  if (damagesRow) {
+  if (damagesRow && window.innerWidth <= 900) {
     const originalPills = Array.from(damagesRow.children);
     originalPills.forEach(pill => {
       const clone = pill.cloneNode(true);
@@ -106,6 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const bottomPanel = document.querySelector('.hero-bottom-panel');
     if (bottomPanel) {
       bottomPanel.classList.toggle('is-janitorial', key === 'janitorial');
+    }
+
+    // Toggle class on the mobile dropdown container for gradient pill border styling
+    const mobileDropdownContainer = document.querySelector('.hero-mobile-dropdown-container');
+    if (mobileDropdownContainer) {
+      mobileDropdownContainer.classList.toggle('is-janitorial', key === 'janitorial');
     }
 
 

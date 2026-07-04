@@ -942,26 +942,50 @@ body.hero-janitorial-active .nav-cta:hover {
 
 .hero-mobile-dropdown-trigger {
   width: 100%;
-  padding-block: 16px;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  /* Horizontal underline border as seen in screenshot */
+  padding: 10px 20px !important;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #c376ff, #5d22fe) border-box !important;
+  border: 1.5px solid transparent !important;
+  border-radius: 100px !important;
+  box-shadow: 0 4px 12px rgba(93, 34, 254, 0.08) !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-body);
   font-size: 1.15rem;
   font-weight: 500;
-  color: #141414;
+  color: #5d22fe !important;
   cursor: pointer;
   text-align: left;
   outline: none;
-  transition: border-bottom-color var(--dur-fast);
+  transition: all 250ms var(--ease);
+}
+
+.dropdown-trigger-arrow svg {
+  color: #5d22fe !important;
+  transition: color 250ms var(--ease);
 }
 
 .hero-mobile-dropdown-trigger:focus-visible {
-  border-bottom-color: #5d22fe;
+  box-shadow: 0 0 0 3px rgba(93, 34, 254, 0.25), 0 4px 12px rgba(93, 34, 254, 0.08) !important;
+}
+
+.hero-mobile-dropdown-container.is-janitorial .hero-mobile-dropdown-trigger:focus-visible {
+  box-shadow: 0 0 0 3px rgba(234, 42, 78, 0.25), 0 4px 12px rgba(234, 42, 78, 0.08) !important;
+}
+
+.hero-mobile-dropdown-container.is-janitorial .hero-mobile-dropdown-trigger {
+  border: 1.5px solid transparent !important;
+  border-radius: 100px !important;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #ea2a4e, #f78625) border-box !important;
+  padding: 10px 20px !important;
+  color: #ea2a4e !important;
+  box-shadow: 0 4px 12px rgba(234, 42, 78, 0.08) !important;
+}
+
+.hero-mobile-dropdown-container.is-janitorial .dropdown-trigger-arrow svg {
+  color: #ea2a4e !important;
 }
 
 .dropdown-trigger-arrow {
@@ -1141,9 +1165,9 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-damages-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* Space out items across full container width */
-  gap: 36px;
+  justify-content: center;
+  /* Centered and brought even closer together */
+  gap: 12px;
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
@@ -1158,15 +1182,12 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-damage-pill {
   display: inline-flex;
   align-items: center;
-  padding: 14px 4px;
-  background: none !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  padding: 8px 12px !important;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    transparent border-box !important;
+  border: 1.5px solid transparent !important;
+  border-radius: 100px !important;
   color: rgba(0, 0, 0, 0.6);
-  /* Dark text on white header */
   font-family: var(--font-body);
   font-size: 0.92rem;
   font-weight: 500;
@@ -1174,57 +1195,58 @@ body.hero-janitorial-active .nav-cta:hover {
   text-decoration: none;
   white-space: nowrap;
   position: relative;
-  transition: color 250ms var(--ease);
+  transition: color 250ms var(--ease), background 250ms var(--ease), border-color 250ms var(--ease), box-shadow 250ms var(--ease);
   cursor: pointer;
-}
-
-.hero-damage-pill:first-child {
-  padding-left: 0;
-}
-
-.hero-damage-pill:nth-child(7) {
-  padding-right: 0;
+  margin-block: 6px;
 }
 
 .hero-damage-pill .hdp-icon {
   display: none !important;
-  /* Hide icons in ZettaJoule sub-nav style */
-}
-
-.hero-damage-pill.is-clone {
-  display: none;
 }
 
 .hero-damage-pill::after {
   content: '';
   position: absolute;
-  bottom: 6px;
-  left: 0;
-  width: 100%;
+  bottom: 0px;
+  left: 12px;
+  width: calc(100% - 24px);
   height: 2px;
   background: transparent;
   transform: scaleX(0.85);
-  transition: background 250ms var(--ease), transform 250ms var(--ease);
+  transition: opacity 250ms var(--ease), transform 250ms var(--ease);
+  opacity: 0;
 }
 
+/* Regular active and hover states: purple gradient border pill */
 .hero-damage-pill:hover,
-.hero-damage-pill:focus-visible {
-  color: #000000;
-  transform: none !important;
-  box-shadow: none !important;
+.hero-damage-pill:focus-visible,
+.hero-damage-pill.is-active {
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #c376ff, #5d22fe) border-box !important;
+  color: #5d22fe !important;
+  box-shadow: 0 4px 12px rgba(93, 34, 254, 0.06) !important;
 }
 
-.hero-damage-pill:hover::after,
-.hero-damage-pill:focus-visible::after,
-.hero-damage-pill.is-active::after {
-  background: linear-gradient(90deg, #c376ff, #5d22fe);
-  transform: scaleX(1);
+/* Janitorial special styling */
+.hero-damage-pill[data-dmg="janitorial"] {
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    transparent border-box !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+  border-color: transparent !important;
 }
 
-.hero-damage-pill[data-dmg="janitorial"]:hover::after,
-.hero-damage-pill[data-dmg="janitorial"]:focus-visible::after,
-.hero-damage-pill[data-dmg="janitorial"].is-active::after {
-  background: linear-gradient(90deg, #ea2a4e, #f78625);
+.hero-damage-pill[data-dmg="janitorial"]::after {
+  display: none !important;
+}
+
+/* Janitorial active and hover states: orange gradient border pill */
+.hero-damage-pill[data-dmg="janitorial"]:hover,
+.hero-damage-pill[data-dmg="janitorial"]:focus-visible,
+.hero-damage-pill[data-dmg="janitorial"].is-active {
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #ea2a4e, #f78625) border-box !important;
+  color: #ea2a4e !important;
+  box-shadow: 0 4px 12px rgba(234, 42, 78, 0.06) !important;
 }
 
 .hdp-icon {
