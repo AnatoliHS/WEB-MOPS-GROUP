@@ -1053,6 +1053,18 @@ body.hero-janitorial-active .nav-cta:hover {
   font-weight: 600;
 }
 
+/* Paint Janitorial Services orange in mobile view */
+.hero-mobile-dropdown-item[data-dmg="janitorial"] {
+  color: #ea2a4e !important;
+}
+
+.hero-mobile-dropdown-item[data-dmg="janitorial"]:hover,
+.hero-mobile-dropdown-item[data-dmg="janitorial"].is-active {
+  background: rgba(234, 42, 78, 0.05) !important;
+  color: #ea2a4e !important;
+  font-weight: 600;
+}
+
 /* Dark readability shading overlay inside image panel */
 .hero-bottom-overlay {
   position: absolute;
@@ -1179,6 +1191,22 @@ body.hero-janitorial-active .nav-cta:hover {
   display: none;
 }
 
+.hero-damages-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.35); /* Darker translucent gray */
+  align-self: center;
+  flex-shrink: 0;
+  margin-inline: 6px;
+}
+
+.hero-mobile-dropdown-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35); /* Matching darker translucent gray */
+  margin-block: 6px;
+}
+
 .hero-damage-pill {
   display: inline-flex;
   align-items: center;
@@ -1229,9 +1257,10 @@ body.hero-janitorial-active .nav-cta:hover {
 
 /* Janitorial special styling */
 .hero-damage-pill[data-dmg="janitorial"] {
+  position: relative;
   background: linear-gradient(#ffffff, #ffffff) padding-box,
-    transparent border-box !important;
-  color: rgba(0, 0, 0, 0.6) !important;
+              transparent border-box !important;
+  color: #ea2a4e !important; /* Soft orange-red text color permanently */
   border-color: transparent !important;
 }
 
@@ -1244,10 +1273,12 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-damage-pill[data-dmg="janitorial"]:focus-visible,
 .hero-damage-pill[data-dmg="janitorial"].is-active {
   background: linear-gradient(#ffffff, #ffffff) padding-box,
-    linear-gradient(90deg, #ea2a4e, #f78625) border-box !important;
+              linear-gradient(90deg, #ea2a4e, #f78625) border-box !important;
   color: #ea2a4e !important;
   box-shadow: 0 4px 12px rgba(234, 42, 78, 0.06) !important;
 }
+
+
 
 .hdp-icon {
   display: flex;
