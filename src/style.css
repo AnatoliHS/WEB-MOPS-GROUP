@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   MOPS INC — Restoration Services
+   MOPS GROUP INC — Restoration Services
    Design tokens extracted from Framer prototype
    https://first-resources-418621.framer.app/
 ═══════════════════════════════════════════════════════════════ */
@@ -1194,7 +1194,8 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-damages-divider {
   width: 1px;
   height: 20px;
-  background: rgba(0, 0, 0, 0.35); /* Darker translucent gray */
+  background: rgba(0, 0, 0, 0.35);
+  /* Darker translucent gray */
   align-self: center;
   flex-shrink: 0;
   margin-inline: 6px;
@@ -1203,7 +1204,8 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-mobile-dropdown-divider {
   height: 1px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.35); /* Matching darker translucent gray */
+  background: rgba(0, 0, 0, 0.35);
+  /* Matching darker translucent gray */
   margin-block: 6px;
 }
 
@@ -1259,8 +1261,9 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-damage-pill[data-dmg="janitorial"] {
   position: relative;
   background: linear-gradient(#ffffff, #ffffff) padding-box,
-              transparent border-box !important;
-  color: #ea2a4e !important; /* Soft orange-red text color permanently */
+    transparent border-box !important;
+  color: #ea2a4e !important;
+  /* Soft orange-red text color permanently */
   border-color: transparent !important;
 }
 
@@ -1273,7 +1276,7 @@ body.hero-janitorial-active .nav-cta:hover {
 .hero-damage-pill[data-dmg="janitorial"]:focus-visible,
 .hero-damage-pill[data-dmg="janitorial"].is-active {
   background: linear-gradient(#ffffff, #ffffff) padding-box,
-              linear-gradient(90deg, #ea2a4e, #f78625) border-box !important;
+    linear-gradient(90deg, #ea2a4e, #f78625) border-box !important;
   color: #ea2a4e !important;
   box-shadow: 0 4px 12px rgba(234, 42, 78, 0.06) !important;
 }
@@ -1666,6 +1669,7 @@ body.hero-janitorial-active .nav-cta:hover {
   padding-block: 100px 50px;
   background: #ffffff;
   /* off-white */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .services-section .section-header {
