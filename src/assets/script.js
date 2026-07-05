@@ -566,4 +566,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // Autoplay all videos programmatically on DOM load and user interaction
+  const forceAutoplay = () => {
+    document.querySelectorAll('video').forEach(video => {
+      video.muted = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay prevented, will play on interaction:", error);
+        });
+      }
+    });
+  };
+
+  forceAutoplay();
+  ['click', 'touchstart', 'scroll'].forEach(evt => {
+    document.addEventListener(evt, forceAutoplay, { once: true, passive: true });
+  });
 });
