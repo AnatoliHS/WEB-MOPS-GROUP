@@ -5165,3 +5165,21 @@ main {
     transform: translateX(-50%);
   }
 }
+
+/* Unified mobile section padding / margins to reduce spacing */
+@media (max-width: 900px) {
+  .about-section,
+  .services-section,
+  .stress-section,
+  .escalation-section,
+  .trust-section,
+  .janitorial-section,
+  .rentals-section,
+  .reviews-section,
+  .faq-section,
+  .cta-section,
+  .contact-section {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+}
