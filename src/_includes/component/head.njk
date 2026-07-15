@@ -54,10 +54,10 @@
     "email": "{{ site.email }}",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "250 Sidney Street",
+      "streetAddress": "41 Dussek St",
       "addressLocality": "Belleville",
       "addressRegion": "ON",
-      "postalCode": "K8P 3Z3",
+      "postalCode": "K8N 5R9",
       "addressCountry": "CA"
     },
     "areaServed": [
@@ -67,6 +67,57 @@
     ]
   }
   </script>
+
+  <!-- FAQ Page Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of restoration do you offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer water damage restoration, fire and smoke recovery, mold remediation, and full property rebuilds. We handle residential and commercial properties of all sizes throughout the Quinte region."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work directly with insurance companies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We provide direct insurance billing and will coordinate with your adjuster from assessment through final sign-off. Our detailed documentation helps ensure your claim is processed smoothly and fairly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly can you respond to an emergency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our emergency line is staffed 24 hours a day, 7 days a week. In most cases we can have a crew on-site within 1–2 hours of your call. Rapid response is critical to preventing secondary damage and reducing overall restoration costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are your technicians certified?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All MOPS GROUP INC technicians hold IICRC (Institute of Inspection Cleaning and Restoration Certification) credentials. We are fully licensed, bonded, and insured, and our team undergoes ongoing training to stay current with industry best practices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We serve Belleville, Quinte West, Prince Edward County, and surrounding communities in Eastern Ontario. If you're unsure whether we cover your area, call us and we'll confirm within minutes."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Cloudflare Turnstile API -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>

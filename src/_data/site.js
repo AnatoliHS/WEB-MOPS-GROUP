@@ -22,7 +22,7 @@ module.exports = {
   license: "Certified Restoration Professionals",
   email: "hello@mopsinc.com",
   phone: "(613) 329-8439",
-  address: "250 Sidney Street, Belleville, ON K8P 3Z3",
+  address: "41 Dussek St, Belleville, ON K8N 5R9",
   url: url,
   year: "2026"
 };
