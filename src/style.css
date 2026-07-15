@@ -492,7 +492,7 @@ body.hero-janitorial-active .nav-cta:hover {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .mobile-toggle {
     display: flex;
   }
@@ -1083,7 +1083,7 @@ body.hero-janitorial-active .nav-cta:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .hero-top-panel {
     padding-top: 96px;
     padding-bottom: 8px;
@@ -1184,6 +1184,22 @@ body.hero-janitorial-active .nav-cta:hover {
   padding: 4px 6px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   margin: 0 auto;
+  position: relative; /* Ensure container is offsetParent for slider positioning */
+}
+
+.hero-damage-slider {
+  position: absolute;
+  pointer-events: none;
+  background: #5d22fe;
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(93, 34, 254, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.hero-damage-slider.is-janitorial {
+  background: #ea2a4e;
+  box-shadow: 0 4px 12px rgba(234, 42, 78, 0.25);
 }
 
 .hero-damages-row::-webkit-scrollbar {
@@ -1197,6 +1213,8 @@ body.hero-janitorial-active .nav-cta:hover {
   align-self: center;
   flex-shrink: 0;
   margin-inline: 4px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-mobile-dropdown-divider {
@@ -1225,8 +1243,9 @@ body.hero-janitorial-active .nav-cta:hover {
   text-decoration: none;
   white-space: nowrap;
   position: relative;
-  transition: color 200ms var(--ease), background-color 200ms var(--ease), box-shadow 200ms var(--ease);
+  transition: color 250ms var(--ease), -webkit-text-fill-color 250ms var(--ease);
   cursor: pointer;
+  z-index: 2; /* Sit on top of the slider background */
 }
 
 .hero-damage-pill .hdp-icon {
@@ -1246,14 +1265,16 @@ body.hero-janitorial-active .nav-cta:hover {
   opacity: 0;
 }
 
-/* Regular active and hover states: filled purple pill */
+/* Regular active and hover states: text color changes, background transparent (slider handles bg) */
 .hero-damage-pill:hover,
 .hero-damage-pill:focus-visible,
 .hero-damage-pill.is-active {
-  background: #5d22fe !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
   -webkit-text-fill-color: #ffffff !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(93, 34, 254, 0.15) !important;
+  box-shadow: none !important;
 }
 
 /* Janitorial special styling */
@@ -1265,20 +1286,21 @@ body.hero-janitorial-active .nav-cta:hover {
   background-clip: initial !important;
   color: #ea2a4e !important;
   border: none !important;
+  z-index: 2;
 }
 
 .hero-damage-pill[data-dmg="janitorial"]::after {
   display: none !important;
 }
 
-/* Janitorial active and hover states: filled orange-red pill */
+/* Janitorial active and hover states */
 .hero-damage-pill[data-dmg="janitorial"]:hover,
 .hero-damage-pill[data-dmg="janitorial"]:focus-visible,
 .hero-damage-pill[data-dmg="janitorial"].is-active {
-  background: #ea2a4e !important;
+  background: transparent !important;
   -webkit-text-fill-color: #ffffff !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(234, 42, 78, 0.15) !important;
+  box-shadow: none !important;
 }
 
 
@@ -2244,7 +2266,7 @@ body.hero-janitorial-active .nav-cta:hover {
   margin-top: 16px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .janitorial-section {
     padding-block: 64px;
   }
@@ -3247,6 +3269,17 @@ body.hero-janitorial-active .nav-cta:hover {
   align-items: center;
 }
 
+.trust-standards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.trust-standards-grid .service-details-list {
+  margin-bottom: 0;
+}
+
 .trust-heading {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -3356,7 +3389,7 @@ body.hero-janitorial-active .nav-cta:hover {
   /* use neon yellow/lime in dark theme */
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .trust-grid {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -3364,27 +3397,33 @@ body.hero-janitorial-active .nav-cta:hover {
 }
 
 @media (max-width: 480px) {
+  .trust-standards-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
   .trust-cards {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 
   .trust-card {
-    aspect-ratio: 1 / 1;
-    padding: 16px 12px;
-    align-items: center;
-    text-align: center;
+    aspect-ratio: auto;
+    padding: 20px 16px;
+    align-items: flex-start;
+    text-align: left;
     justify-content: center;
   }
 
   .trust-card-stat {
-    font-size: clamp(2rem, 6vw, 2.4rem);
+    font-size: 1.8rem;
     margin-bottom: 4px;
   }
 
   .trust-card-label {
-    font-size: 0.72rem;
-    line-height: 1.3;
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 }
 
@@ -4622,7 +4661,7 @@ body.hero-janitorial-active .nav-cta:hover {
   min-height: 120px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -4803,7 +4842,7 @@ body.hero-janitorial-active .nav-cta:hover {
   color: var(--color-text);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -5086,7 +5125,7 @@ main {
   margin-top: auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .hero-info-drawer {
     width: min(340px, 80vw);
     padding: 64px 24px 24px;
@@ -5167,7 +5206,7 @@ main {
 }
 
 /* Unified mobile section padding / margins to reduce spacing */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
 
   .about-section,
   .services-section,

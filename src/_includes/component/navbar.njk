@@ -87,6 +87,15 @@
         shouldBeOrange = true;
       }
       document.body.classList.toggle('hero-janitorial-active', shouldBeOrange);
+
+      const navCta = document.querySelector('.nav-cta');
+      if (navCta) {
+        if (shouldBeOrange) {
+          navCta.textContent = "Request Services";
+        } else {
+          navCta.textContent = "Get Emergency Help";
+        }
+      }
     }
 
     window.addEventListener('scroll', updateNavbar);

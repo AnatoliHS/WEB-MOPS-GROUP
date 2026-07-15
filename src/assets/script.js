@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Set up mobile image sources on initial load if screen is narrow
-  if (window.innerWidth <= 900) {
+  if (window.innerWidth <= 1024) {
     document.querySelectorAll('.hero-banner-img').forEach(img => {
       img.src = '/assets/water_damage_mobile.png';
     });
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set up carousel clones for mobile
   const damagesRow = document.querySelector('.hero-damages-row');
-  if (damagesRow && window.innerWidth <= 900) {
+  if (damagesRow && window.innerWidth <= 1024) {
     const originalPills = Array.from(damagesRow.children);
     originalPills.forEach(pill => {
       const clone = pill.cloneNode(true);
@@ -86,6 +86,42 @@ document.addEventListener('DOMContentLoaded', () => {
   let bannersDismissed = false; // Flag to track if we've crossfaded from banners to single image
 
   let pageInitialized = false;
+
+  let slider = null;
+
+  function updateSliderPosition() {
+    if (window.innerWidth <= 1024) {
+      if (slider) slider.style.display = 'none';
+      return;
+    }
+    const activePill = document.querySelector('.hero-damage-pill.is-active');
+    const damagesRow = document.querySelector('.hero-damages-row');
+    if (activePill && slider && damagesRow) {
+      slider.style.display = 'block';
+      slider.style.left = `${activePill.offsetLeft}px`;
+      slider.style.width = `${activePill.offsetWidth}px`;
+      slider.style.height = `${activePill.offsetHeight}px`;
+      slider.style.top = `${activePill.offsetTop}px`;
+
+      if (activeDmgKey === 'janitorial') {
+        slider.classList.add('is-janitorial');
+      } else {
+        slider.classList.remove('is-janitorial');
+      }
+    }
+  }
+
+  function setupSlider() {
+    const damagesRow = document.querySelector('.hero-damages-row');
+    if (damagesRow) {
+      slider = document.createElement('div');
+      slider.className = 'hero-damage-slider';
+      damagesRow.appendChild(slider);
+      
+      // Position on initial load
+      setTimeout(updateSliderPosition, 100);
+    }
+  }
 
   function splitTextIntoSpans(text, initialOffset = 0) {
     return text.split('').map((char, idx) => {
@@ -243,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgEl = document.getElementById('hero-main-img');
 
     if (bannersEl && imgEl) {
-      const isMobile = window.innerWidth <= 900;
+      const isMobile = window.innerWidth <= 1024;
       const imageSrc = isMobile ? info.imgMobile : info.img;
 
       if (!bannersDismissed && key !== 'water') {
@@ -298,6 +334,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Dispatch scroll event to force navbar logo & CTA color checks to run immediately
     window.dispatchEvent(new Event('scroll'));
+
+    // Update the slider background position
+    if (typeof updateSliderPosition === 'function') {
+      updateSliderPosition();
+    }
   }
 
   // Bind mouse and click interactions to all pills (originals and clones)
@@ -378,12 +419,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize showcase and bind actions
+  setupSlider();
   setActiveService("water");
   setupPillInteractions();
   setupDropdownInteractions();
 
   // Re-run setup after a brief timeout to ensure clones are bound
-  setTimeout(setupPillInteractions, 100);
+  setTimeout(() => {
+    setupPillInteractions();
+    updateSliderPosition();
+  }, 100);
+
+  window.addEventListener('resize', updateSliderPosition);
+
+  // Auto-cycling for desktop view (every 5 seconds, unless hovering on the damages bar)
+  const damageKeys = Object.keys(damageInfo);
+  let isHovered = false;
+
+  const damagesBar = document.querySelector('.hero-damages-bar');
+  if (damagesBar) {
+    damagesBar.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+    damagesBar.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+  }
+
+  setInterval(() => {
+    // Only cycle in desktop view (screen width > 1024px) and when not hovering
+    if (window.innerWidth <= 1024 || isHovered) return;
+
+    const currentIndex = damageKeys.indexOf(activeDmgKey);
+    const nextIndex = (currentIndex + 1) % damageKeys.length;
+    setActiveService(damageKeys[nextIndex]);
+  }, 7000);
 
 
 
