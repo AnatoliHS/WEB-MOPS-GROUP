@@ -415,18 +415,29 @@ footer,
   font-weight: 500;
   color: #222222;
   padding: 8px 12px;
-  border-radius: 8px;
-  transition: color var(--dur-fast), background var(--dur-fast);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 12px;
+  width: calc(100% - 24px);
+  height: 2px;
+  background-color: #5d22fe;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .nav-link:hover {
   color: #5d22fe;
-  background: rgba(93, 34, 254, 0.05);
 }
 
-.nav-link[href="#janitorial-services-section"]:hover {
-  color: #ea2a4e;
-  background: rgba(234, 42, 78, 0.05);
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-cta {
@@ -548,9 +559,8 @@ body.hero-janitorial-active .nav-cta:hover {
     color: #5d22fe;
   }
 
-  .nav-link[href="#janitorial-services-section"]:hover,
-  .nav-link[href="#janitorial-services-section"]:active {
-    color: #ea2a4e;
+  .nav-link::after {
+    display: none !important;
   }
 
   .nav-cta {
@@ -1177,14 +1187,14 @@ body.hero-janitorial-active .nav-cta:hover {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background: linear-gradient(#ffffff, #ffffff) padding-box,
-              linear-gradient(90deg, #c376ff, #5d22fe 78%, #ea2a4e 84%, #f78625) border-box !important;
-  border: 1px solid transparent !important;
+  background: #ffffff;
+  border: 1px solid #141414 !important;
   border-radius: 100px;
   padding: 4px 6px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   margin: 0 auto;
-  position: relative; /* Ensure container is offsetParent for slider positioning */
+  position: relative;
+  /* Ensure container is offsetParent for slider positioning */
 }
 
 .hero-damage-slider {
@@ -1195,11 +1205,6 @@ body.hero-janitorial-active .nav-cta:hover {
   box-shadow: 0 4px 12px rgba(93, 34, 254, 0.25);
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 1;
-}
-
-.hero-damage-slider.is-janitorial {
-  background: #ea2a4e;
-  box-shadow: 0 4px 12px rgba(234, 42, 78, 0.25);
 }
 
 .hero-damages-row::-webkit-scrollbar {
@@ -1229,13 +1234,13 @@ body.hero-janitorial-active .nav-cta:hover {
   display: inline-flex;
   align-items: center;
   padding: 8px 16px !important;
-  background: linear-gradient(135deg, #5d22fe, #9e28ff) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  background-clip: initial !important;
   border: none !important;
   border-radius: 100px !important;
-  color: #5d22fe !important;
+  color: #141414 !important;
   font-family: var(--font-body);
   font-size: 0.92rem;
   font-weight: 500;
@@ -1243,9 +1248,10 @@ body.hero-janitorial-active .nav-cta:hover {
   text-decoration: none;
   white-space: nowrap;
   position: relative;
-  transition: color 250ms var(--ease), -webkit-text-fill-color 250ms var(--ease);
+  transition: color 250ms var(--ease);
   cursor: pointer;
-  z-index: 2; /* Sit on top of the slider background */
+  z-index: 2;
+  /* Sit on top of the slider background */
 }
 
 .hero-damage-pill .hdp-icon {

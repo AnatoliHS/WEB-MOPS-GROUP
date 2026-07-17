@@ -2,9 +2,7 @@
   <div class="nav-inner">
     <a href="#hero" class="nav-brand" aria-label="{{ site.name }} Home">
       <div class="nav-logo-wrap">
-        <img class="nav-logo logo-general active" src="/assets/mops-group-general.png" alt="MOPS Group Logo" loading="eager">
-        <img class="nav-logo logo-restoration" src="/assets/mops-group-resoration.png" alt="MOPS Group Restoration Logo" loading="lazy">
-        <img class="nav-logo logo-janitorial" src="/assets/mops-group-janitorial.png" alt="MOPS Group Janitorial Logo" loading="lazy">
+        <img class="nav-logo logo-restoration active" src="/assets/mops-group-resoration.png" alt="MOPS Group Restoration Logo" loading="eager">
       </div>
     </a>
 
@@ -14,7 +12,6 @@
         <a href="#services" class="nav-link">Services</a>
         <a href="#process" class="nav-link">Capabilities</a>
         <a href="#trust" class="nav-link">Certifications</a>
-        <a href="#janitorial-services-section" class="nav-link">Janitorial</a>
         <a href="#rentals" class="nav-link">Rentals</a>
         <a href="#reviews" class="nav-link">Reviews</a>
         <a href="#faq" class="nav-link">FAQ</a>
@@ -31,12 +28,9 @@
 </nav>
 
 <script>
-  /* ─── Navbar scroll state & dynamic logo swapper ─── */
+  /* ─── Navbar scroll state ─── */
   (function() {
     const navbar = document.getElementById('navbar');
-    const logoGeneral = document.querySelector('.nav-logo.logo-general');
-    const logoRestoration = document.querySelector('.nav-logo.logo-restoration');
-    const logoJanitorial = document.querySelector('.nav-logo.logo-janitorial');
 
     function updateNavbar() {
       if (!navbar) return;
@@ -44,58 +38,6 @@
 
       // Scrolled class state
       navbar.classList.toggle('scrolled', scrollY > 60);
-
-      const heroSection = document.getElementById('hero');
-      const janitorialSection = document.getElementById('janitorial-services-section');
-
-      if (!heroSection || !janitorialSection) return;
-
-      const heroHeight = heroSection.offsetHeight;
-      const jTop = janitorialSection.offsetTop;
-      const jHeight = janitorialSection.offsetHeight;
-
-      // Determine active logo type based on position
-      let activeLogo = 'general';
-
-      if (scrollY <= heroHeight - 72) {
-        // In the hero section
-        activeLogo = 'general';
-      } else if (scrollY < jTop - 80) {
-        // In mitigation / core services
-        activeLogo = 'restoration';
-      } else if (scrollY < jTop + jHeight - 80) {
-        // In Janitorial services
-        activeLogo = 'janitorial';
-      } else {
-        // Everything after Janitorial (Rentals, Reviews, FAQ, Footer)
-        activeLogo = 'general';
-      }
-
-      // Apply active classes to logos
-      if (logoGeneral) logoGeneral.classList.toggle('active', activeLogo === 'general');
-      if (logoRestoration) logoRestoration.classList.toggle('active', activeLogo === 'restoration');
-      if (logoJanitorial) logoJanitorial.classList.toggle('active', activeLogo === 'janitorial');
-
-      // Determine if navbar CTA should use orange (active Janitorial pill in Hero, OR currently inside Janitorial section)
-      let shouldBeOrange = false;
-      if (scrollY <= heroHeight - 72) {
-        const janitorialPill = document.querySelector('.hero-damage-pill[data-dmg="janitorial"]');
-        if (janitorialPill && janitorialPill.classList.contains('is-active')) {
-          shouldBeOrange = true;
-        }
-      } else if (activeLogo === 'janitorial') {
-        shouldBeOrange = true;
-      }
-      document.body.classList.toggle('hero-janitorial-active', shouldBeOrange);
-
-      const navCta = document.querySelector('.nav-cta');
-      if (navCta) {
-        if (shouldBeOrange) {
-          navCta.textContent = "Request Services";
-        } else {
-          navCta.textContent = "Get Emergency Help";
-        }
-      }
     }
 
     window.addEventListener('scroll', updateNavbar);

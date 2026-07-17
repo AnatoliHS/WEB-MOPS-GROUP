@@ -72,13 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       img: "/assets/full_rebuild_panorama.png",
       imgMobile: "/assets/full_rebuild_mobile.png",
       desc: "Complete start-to-finish design, general contracting, and reconstruction services."
-    },
-    janitorial: {
-      title: "Janitorial Services",
-      subtitle: 'Precision Commercial & Sanitation <span class="sub-accent">Services</span>',
-      img: "/assets/mops-maid.jpg",
-      imgMobile: "/assets/mops-maid-mobile.jpg",
-      desc: "We deliver professional cleaning built on precision, accountability, and measurable quality."
     }
   };
 
@@ -102,12 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
       slider.style.width = `${activePill.offsetWidth}px`;
       slider.style.height = `${activePill.offsetHeight}px`;
       slider.style.top = `${activePill.offsetTop}px`;
-
-      if (activeDmgKey === 'janitorial') {
-        slider.classList.add('is-janitorial');
-      } else {
-        slider.classList.remove('is-janitorial');
-      }
     }
   }
 
@@ -117,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slider = document.createElement('div');
       slider.className = 'hero-damage-slider';
       damagesRow.appendChild(slider);
-      
+
       // Position on initial load
       setTimeout(updateSliderPosition, 100);
     }
@@ -138,98 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!info) return;
     activeDmgKey = key;
 
-    // Toggle class on the bottom panel for styling overrides (e.g. CTA buttons)
-    const bottomPanel = document.querySelector('.hero-bottom-panel');
-    if (bottomPanel) {
-      bottomPanel.classList.toggle('is-janitorial', key === 'janitorial');
-    }
+    // Apply active class to current pill
+    document.querySelectorAll('.hero-damage-pill').forEach(pill => {
+      pill.classList.toggle('is-active', pill.dataset.dmg === key);
+    });
 
-    // Toggle class on the mobile dropdown container for gradient pill border styling
-    const mobileDropdownContainer = document.querySelector('.hero-mobile-dropdown-container');
-    if (mobileDropdownContainer) {
-      mobileDropdownContainer.classList.toggle('is-janitorial', key === 'janitorial');
-    }
-
-
-    // Toggle hero header text wrappers dynamically
-    const defaultHeadlines = document.querySelectorAll('.hero-headline-wrapper.default-hero-text');
-    const janitorialHeadlines = document.querySelectorAll('.hero-headline-wrapper.janitorial-hero-text');
-    const defaultIntros = document.querySelectorAll('.hero-intro-wrapper.default-hero-text');
-    const janitorialIntros = document.querySelectorAll('.hero-intro-wrapper.janitorial-hero-text');
-
-    if (key === 'janitorial') {
-      defaultHeadlines.forEach(el => el.classList.remove('active'));
-      defaultIntros.forEach(el => el.classList.remove('active'));
-
-      janitorialHeadlines.forEach(el => {
-        const wasActive = el.classList.contains('active');
-        el.classList.add('active');
-        if (!wasActive) {
-          el.querySelectorAll('.reveal-up').forEach(rev => {
-            rev.style.transition = 'none';
-            rev.style.transitionDelay = '0s';
-            rev.classList.remove('visible');
-            void rev.offsetHeight; // Force reflow
-            rev.style.transition = '';
-            rev.style.transitionDelay = '';
-            rev.classList.add('visible');
-          });
-        }
-      });
-      janitorialIntros.forEach(el => {
-        const wasActive = el.classList.contains('active');
-        el.classList.add('active');
-        if (!wasActive) {
-          el.querySelectorAll('.reveal-up').forEach(rev => {
-            rev.style.transition = 'none';
-            rev.style.transitionDelay = '0s';
-            rev.classList.remove('visible');
-            void rev.offsetHeight; // Force reflow
-            rev.style.transition = '';
-            rev.style.transitionDelay = '';
-            rev.classList.add('visible');
-          });
-        }
-      });
-    } else {
-      let wasJanitorial = false;
-      janitorialHeadlines.forEach(el => {
-        if (el.classList.contains('active')) wasJanitorial = true;
-        el.classList.remove('active');
-      });
-      janitorialIntros.forEach(el => el.classList.remove('active'));
-
-      defaultHeadlines.forEach(el => {
-        const wasActive = el.classList.contains('active');
-        el.classList.add('active');
-        if (wasJanitorial || !wasActive) {
-          el.querySelectorAll('.reveal-up').forEach(rev => {
-            rev.style.transition = 'none';
-            rev.style.transitionDelay = '0s';
-            rev.classList.remove('visible');
-            void rev.offsetHeight; // Force reflow
-            rev.style.transition = '';
-            rev.style.transitionDelay = '';
-            rev.classList.add('visible');
-          });
-        }
-      });
-      defaultIntros.forEach(el => {
-        const wasActive = el.classList.contains('active');
-        el.classList.add('active');
-        if (wasJanitorial || !wasActive) {
-          el.querySelectorAll('.reveal-up').forEach(rev => {
-            rev.style.transition = 'none';
-            rev.style.transitionDelay = '0s';
-            rev.classList.remove('visible');
-            void rev.offsetHeight; // Force reflow
-            rev.style.transition = '';
-            rev.style.transitionDelay = '';
-            rev.classList.add('visible');
-          });
-        }
-      });
-    }
+    updateSliderPosition();
 
     // Update dynamic title elements with letter-by-letter stagger reveal
     const titleEls = document.querySelectorAll('.hero-dynamic-title');
@@ -331,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     pageInitialized = true; // Set initialized flag after first run
-    
+
     // Dispatch scroll event to force navbar logo & CTA color checks to run immediately
     window.dispatchEvent(new Event('scroll'));
 
